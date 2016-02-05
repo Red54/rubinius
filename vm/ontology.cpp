@@ -14,6 +14,7 @@
 #include "builtin/byte_array.hpp"
 #include "builtin/character.hpp"
 #include "builtin/class.hpp"
+#include "builtin/code_db.hpp"
 #include "builtin/compact_lookup_table.hpp"
 #include "builtin/compiled_code.hpp"
 #include "builtin/channel.hpp"
@@ -369,6 +370,7 @@ namespace rubinius {
     FSEvent::init(state);
     Logger::init(state);
     JIT::init(state);
+    CodeDB::init(state);
     Diagnostics::init(state);
   }
 
@@ -472,6 +474,8 @@ namespace rubinius {
       G(rubinius)->set_const(state, "BIN_PATH", String::create(state, path.c_str()));
       path = prefix + RBX_KERNEL_PATH;
       G(rubinius)->set_const(state, "KERNEL_PATH", String::create(state, path.c_str()));
+      path = prefix + RBX_CORE_PATH;
+      G(rubinius)->set_const(state, "CORE_PATH", String::create(state, path.c_str()));
       path = prefix + RBX_LIB_PATH;
       G(rubinius)->set_const(state, "LIB_PATH", String::create(state, path.c_str()));
       path = prefix + RBX_ENC_PATH;
